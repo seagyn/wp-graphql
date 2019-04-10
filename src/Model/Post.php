@@ -114,7 +114,7 @@ class Post extends Model {
 			'isPublic',
 		];
 
-		$allowed_restricted_fields[] = $this->post_type_object->graphql_single_name . 'Id';
+		$allowed_restricted_fields[] = lcfirst( $this->post_type_object->graphql_single_name ) . 'Id';
 
 		$restricted_cap = $this->get_restricted_cap();
 
@@ -240,7 +240,7 @@ class Post extends Model {
 
 		if ( empty( $this->fields ) ) {
 
-			$this->fields[ $this->post_type_object->graphql_single_name . 'Id' ] = function() {
+			$this->fields[ lcfirst( $this->post_type_object->graphql_single_name ) . 'Id' ] = function() {
 				return absint( $this->data->ID );
 			};
 
@@ -443,7 +443,7 @@ class Post extends Model {
 			 * Set the {post_type}Id field to the Model.
 			 */
 			if ( isset( $this->post_type_object ) && isset( $this->post_type_object->graphql_single_name ) ) {
-				$type_id                 = $this->post_type_object->graphql_single_name . 'Id';
+				$type_id                 = lcfirst( $this->post_type_object->graphql_single_name ) . 'Id';
 				$this->fields[ $type_id ] = function() {
 					return absint( $this->data->ID );
 				};
